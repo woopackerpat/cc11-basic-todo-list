@@ -10,6 +10,7 @@ function TodoList(props) {
           title={el.title}
           completed={el.completed}
           removeTodo={props.removeTodo}
+          updateTodo = {props.updateTodo}
         />
       ))}
       {/* <Todo title = "Homework" completed = {true}/>

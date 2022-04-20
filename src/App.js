@@ -38,12 +38,30 @@ function App() {
     }
   };
 
+  // newValue เป็น object ในกรณีที่มีค่าหลายค่าที่ต้องการ update
+  // ให้ส่งเฉพาะค่าที่ update ก็ได้ แล้ว spread ตัวเดิมก่อน แล้วค่อยอัพเดทตัวใหม่
+
+  const updateTodo = (newValue, id) => {
+    const idx = todoList.findIndex((el) => el.id === id);
+    if (idx !== -1) {
+      const oldTodoList = [...todoList]
+      oldTodoList[idx] = {...oldTodoList[idx],...newValue}
+      setTodoList(oldTodoList)
+    }
+  }
+
+
+
   return (
     <div className="container max-w-xs pt-5">
       <TodoInput createTodo={createTodo} />
       <Filter />
       <PageLimit />
-      <TodoList todoList={todoList} removeTodo = {removeTodo}/>
+      <TodoList 
+      todoList={todoList} 
+      removeTodo = {removeTodo}
+      updateTodo = {updateTodo}
+      />
       <Pagination />
     </div>
   );
